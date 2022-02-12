@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RandPlays</string>
+    <string name="Titulo">RandPlays</string>
+    <string name="NombreTextInput">Nombre</string>
+    <string name="ButtonGuardar">GUARDAR</string>
+    <string name="PenaTextView">¿Deseas guardar una penitencia?</string>
+    <string name="JugarButton">JUGAR</string>
+    <string name="Penitencias">PENITENCIA</string>
+</resources>
