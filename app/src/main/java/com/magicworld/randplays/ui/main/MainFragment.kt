@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.magicworld.randplays.MainActivity
 import com.magicworld.randplays.R
 import com.magicworld.randplays.databinding.MainFragmentBinding
 
@@ -31,10 +32,11 @@ class MainFragment : Fragment() {
         return mainBinding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        (activity as MainActivity).hideIcon()
         with(mainBinding) {
             guardarNombreButton.setOnClickListener {
                 if (nombreTextInputLayout.text.toString().isEmpty())

@@ -6,4 +6,9 @@
     <string name="PenaTextView">¿Deseas guardar una penitencia?</string>
     <string name="JugarButton">JUGAR</string>
     <string name="Penitencias">PENITENCIA</string>
+    <string name="MenuAyuda">¿Como Jugar?</string>
+    <string name="reglas_juego">REGLAS</string>
+    <string name="regla_uno">- Cada jugador debera escribir su nombre y a continuación darle en el botón guardar</string>
+    <string name="regla_final">- Recuerden siempre respetar a sus amigos; ahora solo falta darle al boton JUGAR</string>
+    <string name="regla_dos">- Si se desea los jugadores podran guardar penitencia adicionales, esto podria darle otro enfoque al juego (opcional)</string>
 </resources>
