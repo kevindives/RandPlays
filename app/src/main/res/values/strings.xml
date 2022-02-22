@@ -9,6 +9,9 @@
     <string name="MenuAyuda">¿Como Jugar?</string>
     <string name="reglas_juego">REGLAS</string>
     <string name="regla_uno">- Cada jugador debera escribir su nombre y a continuación darle en el botón guardar</string>
-    <string name="regla_final">- Recuerden siempre respetar a sus amigos; ahora solo falta darle al boton JUGAR</string>
     <string name="regla_dos">- Si se desea los jugadores podran guardar penitencia adicionales, esto podria darle otro enfoque al juego (opcional)</string>
+    <string name="regla_tres">- El nombre de un participante no puede salir dos veces seguidas</string>
+    <string name="regla_cuatro">- Las penitencias saldran aleatoriamente hasta que se terminen , luego se empezaran a repetir</string>
+    <string name="regla_cinco">-El dispositvo debera rotar a la derecha cada jugador debe darle a JUGAR y leer el nombre y la penitencia correspondiente</string>
+    <string name="regla_final">- Recuerden siempre respetar a sus amigos.</string>
 </resources>

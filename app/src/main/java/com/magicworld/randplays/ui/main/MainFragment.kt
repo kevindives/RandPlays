@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.magicworld.randplays.MainActivity
 import com.magicworld.randplays.R
 import com.magicworld.randplays.databinding.MainFragmentBinding
+import com.magicworld.randplays.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
 
@@ -74,6 +75,7 @@ class MainFragment : Fragment() {
 
                 val nombreGanador:TextView = views.findViewById(R.id.nombre_text_view)
                 val penaGanadora:TextView = views.findViewById(R.id.pena_text_view)
+
                 viewModel.onNombreAleatorioDone.observe(viewLifecycleOwner){result ->
                     nombreGanador.text = result
                 }

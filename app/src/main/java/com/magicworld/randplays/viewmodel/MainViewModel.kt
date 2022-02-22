@@ -1,4 +1,4 @@
-package com.magicworld.randplays.ui.main
+package com.magicworld.randplays.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,8 +14,8 @@ class MainViewModel : ViewModel() {
 
     private val nombresGuardados = arrayListOf<String>()
     private val penitenciasGuardadas = arrayListOf<String>()
+    private val penitenciasExtras = arrayListOf<String>()
     private var numRandomGuardado = 0
-    private var penaRandomGuardada = 0
 
     fun guardarNombre(nombreJugador: String) {
         nombresGuardados.add(nombreJugador)
@@ -25,16 +25,21 @@ class MainViewModel : ViewModel() {
         if (penitenciasGuardadas.isEmpty()) {
             crearArray()
             penitenciasGuardadas.add(penitencia)
+            penitenciasExtras.add(penitencia)
         } else {
             penitenciasGuardadas.add(penitencia)
+            penitenciasExtras.add(penitencia)
         }
 
     }
 
     fun jugar() {
 
-        if (penitenciasGuardadas.isEmpty())
+        if (penitenciasGuardadas.isEmpty()){
             crearArray()
+            if (penitenciasExtras.isNotEmpty())
+                guardarPenitenciasExtras()
+        }
 
         if (nombresGuardados.isEmpty()) {
             nombresGuardados.add("Jugador 1")
@@ -50,6 +55,7 @@ class MainViewModel : ViewModel() {
     private fun nombreGanador() {
         val longArray = nombresGuardados.count() - 1
         var numRandom = (0..longArray).random()
+        //Se hace para no caer en un ciclo infinito
         if (longArray == 0) {
             val aleatorio = nombresGuardados[numRandom]
             nombreAleatorio.value = aleatorio
@@ -65,12 +71,10 @@ class MainViewModel : ViewModel() {
 
     private fun penaGanadora() {
         val longArray = penitenciasGuardadas.count() - 1
-        var numRandom = (0..longArray).random()
-        while (numRandom == penaRandomGuardada)
-            numRandom = (0..longArray).random()
+        val numRandom = (0..longArray).random()
         val aleatorio = penitenciasGuardadas[numRandom]
         penaAleatoria.value = aleatorio
-        penaRandomGuardada = numRandom
+        penitenciasGuardadas.removeAt(numRandom)
     }
 
     private fun crearArray() {
@@ -96,6 +100,9 @@ class MainViewModel : ViewModel() {
                 "BOSTEZOS CONTAGIOSOS \n \n Bostezar y estirarse por un minuto o hasta que otra persona se contagie de los bostezos."
                 )
         )
+    }
+    private fun guardarPenitenciasExtras(){
+        penitenciasGuardadas.addAll(penitenciasExtras)
     }
 
 }

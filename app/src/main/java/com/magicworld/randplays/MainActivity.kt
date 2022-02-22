@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.magicworld.randplays.ui.main.MainFragment
+import com.magicworld.randplays.ui.main.reglas.ReglasFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.overflow_menu, menu)
+        inflater.inflate(R.menu.help_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

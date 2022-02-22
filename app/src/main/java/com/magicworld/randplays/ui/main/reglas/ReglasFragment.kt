@@ -1,8 +1,10 @@
-package com.magicworld.randplays
+package com.magicworld.randplays.ui.main.reglas
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import com.magicworld.randplays.MainActivity
+import com.magicworld.randplays.R
 
 class ReglasFragment : Fragment() {
 
