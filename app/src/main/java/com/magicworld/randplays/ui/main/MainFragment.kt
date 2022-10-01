@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.magicworld.randplays.MainActivity
 import com.magicworld.randplays.R
 import com.magicworld.randplays.databinding.MainFragmentBinding
@@ -21,14 +21,13 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var mainBinding: MainFragmentBinding
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        (activity as MainActivity).hideIcon()
         mainBinding = MainFragmentBinding.inflate(inflater, container, false)
         return mainBinding.root
     }
@@ -37,15 +36,13 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as MainActivity).hideIcon()
+
         with(mainBinding) {
+
             guardarNombreButton.setOnClickListener {
                 if (nombreTextInputLayout.text.toString().isEmpty())
-                    Toast.makeText(
-                        context,
-                        "Debes escribir tu nombre participante ",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(context, "Debes escribir tu nombre participante ", Toast.LENGTH_SHORT)
+                        .show()
                 else {
                     viewModel.guardarNombre(nombreTextInputLayout.text.toString())
                     Toast.makeText(context, "Participante guardado con exito ", Toast.LENGTH_SHORT)
@@ -53,6 +50,7 @@ class MainFragment : Fragment() {
                     nombreTextInputLayout.setText("")
                 }
             }
+
             guardarPenaButton.setOnClickListener {
                 if (penaTextImputLayout.text.toString().isEmpty())
                     Toast.makeText(context, "Debes escribir una penitencia", Toast.LENGTH_SHORT)
@@ -64,6 +62,7 @@ class MainFragment : Fragment() {
                     penaTextImputLayout.setText("")
                 }
             }
+
             jugarButton.setOnClickListener {
                 viewModel.jugar()
 
@@ -73,18 +72,18 @@ class MainFragment : Fragment() {
                 val dialog = builder.create()
                 dialog.show()
 
-                val nombreGanador:TextView = views.findViewById(R.id.nombre_text_view)
-                val penaGanadora:TextView = views.findViewById(R.id.pena_text_view)
+                val nombreGanador: TextView = views.findViewById(R.id.nombre_text_view)
+                val penaGanadora: TextView = views.findViewById(R.id.pena_text_view)
 
-                viewModel.onNombreAleatorioDone.observe(viewLifecycleOwner){result ->
-                    nombreGanador.text = result
+                viewModel.onNombreAleatorioDone.observe(viewLifecycleOwner){ nombre ->
+                    nombreGanador.text = nombre
                 }
-                viewModel.onPenaAleatoriaDone.observe(viewLifecycleOwner){ result ->
-                    penaGanadora.text = result
+                viewModel.onPenaAleatoriaDone.observe(viewLifecycleOwner){pena->
+                    penaGanadora.text = pena
                 }
+
             }
         }
-
 
     }
 

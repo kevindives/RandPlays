@@ -22,6 +22,7 @@ class ReglasFragment : Fragment() {
         (activity as MainActivity).showIcon()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         menu.clear()
