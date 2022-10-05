@@ -9,25 +9,25 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
     private val repository =  Repository()
-    val onPenaAleatoriaDone = repository.onPenaGanadoraDone
-    val onNombreAleatorioDone = repository.onNombreGanadorDone
+    val onRandomPenaltyDone = repository.onWinningPenaltyDone
+    val onRandomNameDone = repository.onWinningNameDone
 
-    fun guardarNombre(nombreJugador: String) {
+    fun saveName(nombreJugador: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.guardarNombre(nombreJugador)
+            repository.savedName(nombreJugador)
         }
 
     }
 
-    fun guardarPenitencia(penitencia: String) {
+    fun savePenalty(penitencia: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.guardarPenitencia(penitencia)
+            repository.savedPenalty(penitencia)
         }
 
     }
 
-    fun jugar() {
-        repository.jugar()
+    fun play() {
+        repository.play()
     }
 
 }

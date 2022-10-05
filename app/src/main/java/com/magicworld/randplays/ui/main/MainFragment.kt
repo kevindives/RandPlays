@@ -39,32 +39,32 @@ class MainFragment : Fragment() {
 
         with(mainBinding) {
 
-            guardarNombreButton.setOnClickListener {
-                if (nombreTextInputLayout.text.toString().isEmpty())
+            saveNameButton.setOnClickListener {
+                if (nameTextInputLayout.text.toString().isEmpty())
                     Toast.makeText(context, "Debes escribir tu nombre participante ", Toast.LENGTH_SHORT)
                         .show()
                 else {
-                    viewModel.guardarNombre(nombreTextInputLayout.text.toString())
+                    viewModel.saveName(nameTextInputLayout.text.toString())
                     Toast.makeText(context, "Participante guardado con exito ", Toast.LENGTH_SHORT)
                         .show()
-                    nombreTextInputLayout.setText("")
+                    nameTextInputLayout.setText("")
                 }
             }
 
-            guardarPenaButton.setOnClickListener {
-                if (penaTextImputLayout.text.toString().isEmpty())
+            savePenaltyButton.setOnClickListener {
+                if (penaltyTextImputLayout.text.toString().isEmpty())
                     Toast.makeText(context, "Debes escribir una penitencia", Toast.LENGTH_SHORT)
                         .show()
                 else {
-                    viewModel.guardarPenitencia(penaTextImputLayout.text.toString())
+                    viewModel.savePenalty(penaltyTextImputLayout.text.toString())
                     Toast.makeText(context, "Penitencia guardada con exito ", Toast.LENGTH_SHORT)
                         .show()
-                    penaTextImputLayout.setText("")
+                    penaltyTextImputLayout.setText("")
                 }
             }
 
-            jugarButton.setOnClickListener {
-                viewModel.jugar()
+            playButton.setOnClickListener {
+                viewModel.play()
 
                 val builder = AlertDialog.Builder(requireContext())
                 val views = layoutInflater.inflate(R.layout.popup, null)
@@ -72,13 +72,13 @@ class MainFragment : Fragment() {
                 val dialog = builder.create()
                 dialog.show()
 
-                val nombreGanador: TextView = views.findViewById(R.id.nombre_text_view)
-                val penaGanadora: TextView = views.findViewById(R.id.pena_text_view)
+                val nombreGanador: TextView = views.findViewById(R.id.name_text_view)
+                val penaGanadora: TextView = views.findViewById(R.id.penalty_text_view)
 
-                viewModel.onNombreAleatorioDone.observe(viewLifecycleOwner){ nombre ->
+                viewModel.onRandomNameDone.observe(viewLifecycleOwner){ nombre ->
                     nombreGanador.text = nombre
                 }
-                viewModel.onPenaAleatoriaDone.observe(viewLifecycleOwner){pena->
+                viewModel.onRandomPenaltyDone.observe(viewLifecycleOwner){ pena->
                     penaGanadora.text = pena
                 }
 
