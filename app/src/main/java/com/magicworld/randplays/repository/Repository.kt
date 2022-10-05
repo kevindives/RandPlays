@@ -22,49 +22,45 @@ class Repository {
 
     fun guardarPenitencia(penitencia: String) {
 
-        if (penitenciasGuardadas.isEmpty()) {
-            crearArray()
-            penitenciasGuardadas.add(penitencia)
-            penitenciasExtras.add(penitencia)
-        } else {
-            penitenciasGuardadas.add(penitencia)
-            penitenciasExtras.add(penitencia)
-        }
+        penitenciasExtras.add(penitencia)
+        if (penitenciasGuardadas.isNotEmpty()) penitenciasGuardadas.add(penitencia)
+
     }
 
     fun jugar() {
 
-        if (penitenciasGuardadas.isEmpty()){
-            crearArray()
-            if (penitenciasExtras.isNotEmpty())
-                guardarPenitenciasExtras()
-        }
-
-        if (nombresGuardados.isEmpty()) {
-            nombresGuardados.add("Jugador 1")
-            nombreGanador()
-            nombresGuardados.removeAt(0)
-        } else {
-            nombreGanador()
-        }
+        fillArray()
+        nombreGanador()
         penaGanadora()
+
     }
 
     private fun nombreGanador() {
-        val longArray = nombresGuardados.count() -1
-        var numRandom = (0..longArray).random()
-        //Se hace para no caer en un ciclo infinito
-        if (longArray == 0) {
-            nombreGanador.value = nombresGuardados[numRandom]
 
-        } else {
+        if (nombresGuardados.isEmpty()){
+            nombresGuardados.addAll(listOf("Jugador 1" , "jugador 2"))
+            val longArray = nombresGuardados.count() - 1
+            var numRandom = (0..longArray).random()
             while (numRandom == numRandomGuardado) {
                 numRandom = (0..longArray).random()
             }
             nombreGanador.value = nombresGuardados[numRandom]
+            nombresGuardados.removeAll(listOf("Jugador 1" , "jugador 2"))
             numRandomGuardado = numRandom
-
         }
+        if (nombresGuardados.isNotEmpty()){
+            val longArray = nombresGuardados.count() - 1
+            var numRandom = (0..longArray).random()
+            if (longArray != 0){
+                while (numRandom == numRandomGuardado) {
+                    numRandom = (0..longArray).random()
+                }
+            }
+
+            nombreGanador.value = nombresGuardados[numRandom]
+            numRandomGuardado = numRandom
+        }
+
     }
 
     private fun penaGanadora(){
@@ -75,16 +71,20 @@ class Repository {
 
     }
 
-    private fun guardarPenitenciasExtras(){
-        penitenciasGuardadas.addAll(penitenciasExtras)
-    }
-
-
-    private fun crearArray() {
+    private fun fillArray() {
         val penitencia = Penitencias()
-        penitenciasGuardadas.addAll(
-            penitencia.listaPenitencias
-        )
+        if (penitenciasGuardadas.isEmpty()){
+            penitenciasGuardadas.addAll(
+                penitencia.listaPenitencias
+            )
+            if (penitenciasExtras.isEmpty()){
+                penitenciasGuardadas.addAll(
+                    penitenciasExtras
+                )
+            }
+
+        }
+
     }
 
 }
