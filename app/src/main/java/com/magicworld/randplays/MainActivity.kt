@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
-            else -> {return true}
+            else -> return true
         }
     }
     fun showIcon(){
